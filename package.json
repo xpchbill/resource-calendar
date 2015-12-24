@@ -1,0 +1,61 @@
+{
+  "name": "resource-calendar",
+  "title": "resource-calendar",
+  "version": "0.0.1",
+  "description": "Full-sized drag & drop event calendar",
+  "keywords": [
+    "calendar"
+  ],
+  "homepage": "https://github.com/xpchbill/resource-calendar",
+  "bugs": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xpchbill/resource-calendar.git"
+  },
+  "license": {
+    "type": "MIT",
+    "url": ""
+  },
+  "author": {
+    "name": "A"
+  },
+  "copyright": "",
+  "dependencies": {
+    "jquery": ">=1.7.1",
+    "moment": ">=2.5.0"
+  },
+  "devDependencies": {
+    "concurrently": "^0.1.1",
+    "autoprefixer-loader": "^3.1.0",
+    "babel-core": "^6.2.1",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "babel-preset-stage-2": "^6.1.18",
+    "browser-sync": "^2.10.0",
+    "css-loader": "^0.23.0",
+    "del": "^2.1.0",
+    "extract-text-webpack-plugin": "^0.9.1",
+    "file-loader": "^0.8.4",
+    "gulp": "^3.9.0",
+    "gulp-changed": "^1.3.0",
+    "gulp-inject": "^3.0.0",
+    "less": "^2.5.3",
+    "less-loader": "^2.2.1",
+    "run-sequence": "^1.1.5",
+    "webpack": "^1.12.6"
+  },
+  "scripts": {
+    "dev": "concurrent --kill-others \"gulp dev\""
+  },
+  "main": "dist/fullcalendar.js",
+  "files": [
+    "dist/*.js",
+    "dist/*.css",
+    "dist/lang",
+    "README.*",
+    "LICENSE.*",
+    "CHANGELOG.*",
+    "CONTRIBUTING.*"
+  ]
+}

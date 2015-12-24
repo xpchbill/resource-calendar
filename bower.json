@@ -1,0 +1,43 @@
+{
+  "name": "resource-calendar",
+  "title": "resource-calendar",
+  "version": "0.0.1",
+  "description": "Full-sized drag & drop event calendar",
+  "keywords": [
+    "calendar"
+  ],
+  "homepage": "",
+  "bugs": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xpchbill/resource-calendar.git"
+  },
+  "license": {
+    "type": "MIT"
+  },
+  "author": {
+    "name": ""
+  },
+  "copyright": "",
+  "dependencies": {
+    "jquery": ">=1.7.1",
+    "moment": ">=2.5.0"
+  },
+  "devDependencies": {
+    "moment-timezone": "~0.2.1"
+  },
+  "main": [
+    "dist/js/fullcalendar.js",
+    "dist/css/fullcalendar.css"
+  ],
+  "ignore": [
+    "*",
+    "**/.*",
+    "!/dist/**",
+    "!/README.*",
+    "!/LICENSE.*",
+    "!/CHANGELOG.*",
+    "!/CONTRIBUTING.*",
+    "!/fullcalendar/**"
+  ]
+}
