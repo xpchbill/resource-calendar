@@ -3,59 +3,58 @@
 import {Grid, DayTableMixin, htmlEscape} from "../FC.js";
 
 export default {
+  /**
+   * Render resources by call DayTableMixin.updateDayTableCols.
+   * @return {[type]} [description]
+   */
+  renderResources() {
+    DayTableMixin.updateDayTableCols.call(this);
+  },
 
-	/**
-	 * Render resources by call DayTableMixin.updateDayTableCols.
-	 * @return {[type]} [description]
-	 */
-	renderResources(){
-		DayTableMixin.updateDayTableCols.call(this);
-	},
+  /**
+   * Get resources.
+   * @return {Array} resources
+   */
+  getResources() {
+    let calendar = this.view.calendar;
+    return calendar.getResources();
+  },
 
-	/**
-	 * Get resources.
-	 * @return {Array} resources
-	 */
-	getResources() {
-		let calendar = this.view.calendar;
-		return calendar.getResources();
-	},
+  /**
+   * Get resources count.
+   * @return {Number}
+   */
+  getResourcesCount() {
+    let resources = this.getResources();
+    return resources.length;
+  },
 
-	/**
-	 * Get resources count.
-	 * @return {Number}
-	 */
-	getResourcesCount() {
-		let resources = this.getResources();
-		return resources.length;
-	},
-
-	/**
-	 * Add resource id for the span(Moment)
-	 * @param  {Class} span  Instance of Moment.
-	 * @param  {Object} event
-	 * @return {Class}
-	 */
-	transformEventSpan(span, event) {
+  /**
+   * Add resource id for the span(Moment)
+   * @param  {Class} span  Instance of Moment.
+   * @param  {Object} event
+   * @return {Class}
+   */
+  transformEventSpan(span, event) {
     return span.resourceId = event['resourceId'];
   },
 
-	/**
-	 * Get resource by column number.
-	 * @param  {Number} col
-	 * @return {Object} resource
-	 */
+  /**
+   * Get resource by column number.
+   * @param  {Number} col
+   * @return {Object} resource
+   */
   getColResource(col) {
-		let resources = this.getResources();
+    let resources = this.getResources();
     return resources[this.getColResourceIndex(col)];
   },
 
-	/**
-	 * Get column number by resource's index.
-	 * {this.colCnt} is from DayTableMixin.
-	 * @param  {Number} col
-	 * @return {Number}
-	 */
+  /**
+   * Get column number by resource's index.
+   * {this.colCnt} is from DayTableMixin.
+   * @param  {Number} col
+   * @return {Number}
+   */
   getColResourceIndex(col) {
     if (this.isRTL) {
       col = this.colCnt - 1 - col;
@@ -80,7 +79,7 @@ export default {
   },
 
   computeColCnt() {
-		let rsCount = this.getResourcesCount();
+    let rsCount = this.getResourcesCount();
     return (rsCount || 1) * this.daysPerRow;
   },
 
@@ -109,7 +108,7 @@ export default {
    * @return {String}
    */
   renderHeadTrHtml() {
-		let rsCount = this.getResourcesCount();
+    let rsCount = this.getResourcesCount();
     if (!rsCount) {
       return DayTableMixin.renderHeadTrHtml.call(this);
     } else {

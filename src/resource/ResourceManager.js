@@ -3,15 +3,14 @@
 import {Emitter} from "./FC.js";
 
 export default class ResourceManager extends Emitter{
-
   constructor(calendar) {
     super(calendar);
-		this.calendar = calendar;
-		this._reset();
-	}
+    this.calendar = calendar;
+    this._reset();
+  }
 
-	fetch(){
-    let fetchingStatus= this.fetchingStatus;
+  fetch() {
+    let fetchingStatus = this.fetchingStatus;
 
     fetchingStatus.start();
     setTimeout(() => {
@@ -19,57 +18,56 @@ export default class ResourceManager extends Emitter{
       fetchingStatus.end(this.getResources());
     }, 1000);
 
-	}
+  }
 
-  reFetch(){
+  reFetch() {
     this._reset();
     this.fetch();
   }
 
-	getResourceById(id) {
+  getResourceById(id) {
     return this.resourcesMap[id];
   }
 
-	getResources() {
-		return this.resources;
+  getResources() {
+    return this.resources;
   }
 
-	setResources(resources) {
+  setResources(resources) {
     //this._reset();
     resources.forEach((rsc) => {
       var _rsc = this.createResource(Object.assign({}, rsc));
       this.resources.push(_rsc);
     });
-		return this.resources;
+    return this.resources;
   }
 
-	createResource(resource){
-		resource.id = resource.id ? resource.id : '';
-		this.resourcesMap[resource.id] = resource;
-		return resource;
-	}
+  createResource(resource) {
+    resource.id = resource.id ? resource.id : '';
+    this.resourcesMap[resource.id] = resource;
+    return resource;
+  }
 
-	addResource(resource){
-		var _rsc = this.createResource(resource);
-		this.resources.push(_rsc);
-		this.trigger('add', _rsc);
-	}
+  addResource(resource) {
+    var _rsc = this.createResource(resource);
+    this.resources.push(_rsc);
+    this.trigger('add', _rsc);
+  }
 
-	removeResource(resource){
+  removeResource(resource) {
 
-		this.trigger('remove', _rsc);
-	}
+    this.trigger('remove', _rsc);
+  }
 
-	getEventResourceId(event){
-		return String(event[this.getEventResourceField()] || '');
-	}
+  getEventResourceId(event) {
+    return String(event[this.getEventResourceField()] || '');
+  }
 
-	_reset(){
-		this.resources = [];
+  _reset() {
+    this.resources = [];
     this.resourcesMap = {};
     this.fetchingStatus = new FetchingStatus();
-	}
-
+  }
 }
 
 class FetchingStatus {

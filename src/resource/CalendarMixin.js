@@ -5,17 +5,17 @@ import ResourceManager from "./ResourceManager.js";
 
 export default {
 
-	initialize() {
-	  this.rsManager = new ResourceManager(this);
-	},
+  initialize() {
+    this.rsManager = new ResourceManager(this);
+  },
 
-	getResources() {
-		return this.rsManager.getResources() || [];
-	},
+  getResources() {
+    return this.rsManager.getResources() || [];
+  },
 
-	getResourcesCount() {
-		let resources = this.getResources();
-		return resources.length;
-	}
+  getResourcesCount() {
+    let resources = this.getResources();
+    return resources.length;
+  }
 
 }
