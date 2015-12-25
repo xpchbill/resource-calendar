@@ -1,6 +1,6 @@
 "use strict";
 
-import {Emitter} from "./FC.js";
+import {Emitter} from "../FC.js";
 
 export default class ResourceManager extends Emitter{
   constructor(calendar) {

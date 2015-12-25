@@ -1,6 +1,6 @@
 "use strict";
 
-import ResourceView from "../ResourceView.js";
+import ResourceView from "../common/ResourceView.js";
 import ResourceTimeGrid from "../day/ResourceTimeGrid.js";
 import ResourceDayGrid from "../day/ResourceDayGrid.js";
 

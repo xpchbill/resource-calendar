@@ -1,7 +1,7 @@
 "use strict";
 
 import {Calendar, views} from "./FC.js";
-import ResourceManager from "./ResourceManager.js";
+import ResourceManager from "./common/ResourceManager.js";
 
 export default {
 

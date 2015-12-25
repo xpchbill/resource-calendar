@@ -1,6 +1,6 @@
 "use strict";
 
-import {AgendaView} from "./FC.js";
+import {AgendaView} from "../FC.js";
 
 export default class ResourceView extends AgendaView{
   constructor(...args) {

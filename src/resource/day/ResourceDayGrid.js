@@ -1,7 +1,7 @@
 "use strict";
 
 import {DayGrid, htmlEscape} from "../FC.js";
-import ResourceGrid from "./ResourceGrid.js";
+import ResourceGridMixin from "../common/ResourceGridMixin.js";
 
 export default class ResourceDayGrid extends DayGrid {
 
@@ -44,4 +44,4 @@ export default class ResourceDayGrid extends DayGrid {
   }
 }
 
-Object.assign(ResourceDayGrid.prototype, ResourceGrid);
+Object.assign(ResourceDayGrid.prototype, ResourceGridMixin);

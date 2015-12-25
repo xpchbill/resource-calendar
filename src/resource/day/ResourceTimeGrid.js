@@ -1,7 +1,7 @@
 "use strict";
 
 import {TimeGrid} from "../FC.js";
-import ResourceGrid from "./ResourceGrid.js";
+import ResourceGridMixin from "../common/ResourceGridMixin.js";
 
 export default class ResourceTimeGrid extends TimeGrid {
 
@@ -110,4 +110,4 @@ export default class ResourceTimeGrid extends TimeGrid {
 
 }
 
-Object.assign(ResourceTimeGrid.prototype, ResourceGrid)
+Object.assign(ResourceTimeGrid.prototype, ResourceGridMixin)
