@@ -4,8 +4,9 @@ dist
 # npm modules
 node_modules
 
-# bower components
-#lib/*/*
 
 # full calendar
 fullcalendar
+
+# fullcalendar source
+!lib/fullcalendar
