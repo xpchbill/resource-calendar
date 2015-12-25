@@ -36,9 +36,9 @@ export default class ResourceWeekView extends ResourceView{
    * @param  {Array} resources [description]
    */
 	renderResources(){
-		this.timeGrid.setResources();
+		this.timeGrid.renderResources();
     if (this.dayGrid) {
-      this.dayGrid.setResources();
+      this.dayGrid.renderResources();
     }
 	}
 
