@@ -41,12 +41,13 @@ function build(mode, done) {
           loader: mode === DEV
             ? ExtractTextPlugin.extract("css?-minimize&sourceMap!autoprefixer?{browsers:['last 2 versions', 'ie 9']}!less?sourceMap")
             : ExtractTextPlugin.extract("css?minimize!autoprefixer?{browsers:['last 2 versions', 'ie 9']}!less")
-        }
+        },
+        { test: /\.hbs$/, loader: "handlebars-loader" }
       ]
     },
     resolve: {
-      extensions: ["", ".js", ".less", ".css"],
-      modulesDirectories: ["src", "fullcalendar/src"]
+      extensions: ["", ".js", ".hbs"],
+      modulesDirectories: ["src"]
     },
     externals: {
         // require("jquery") is external and available

@@ -25,6 +25,7 @@
     "moment": ">=2.5.0"
   },
   "devDependencies": {
+    "handlebars-loader": "^1.1.4",
     "concurrently": "^0.1.1",
     "autoprefixer-loader": "^3.1.0",
     "babel-core": "^6.2.1",

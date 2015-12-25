@@ -1,6 +1,8 @@
 "use strict";
 
+/* Hold modules of fullCalendar as es6 modules */
 
+/* Business modules */
 export let FC = $.fullCalendar;
 
 export let Emitter = FC.Emitter;
@@ -21,5 +23,5 @@ export let views = FC.views;
 
 export let AgendaView = FC.AgendaView;
 
-/* util */
+/* util modules */
 export let htmlEscape = FC.htmlEscape;

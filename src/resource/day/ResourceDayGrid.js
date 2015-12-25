@@ -7,7 +7,6 @@ export default class ResourceDayGrid extends DayGrid {
 
   constructor(view) {
     super(view);
-    this.resourceCnt = 0;
   }
 
   /**
@@ -37,8 +36,8 @@ export default class ResourceDayGrid extends DayGrid {
   getHitSpan(hit) {
     var span;
     span = super.getHitSpan(hit);
-    if (this.resourceCnt) {
-      span.resourceId = this.getColResource(hit.col).id;
+    if (this.getResourcesCount()) {
+      span.resourceId = this.getResourceByCol(hit.col).id;
     }
     return span;
   }

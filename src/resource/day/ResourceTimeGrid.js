@@ -50,14 +50,14 @@ export default class ResourceTimeGrid extends TimeGrid {
   }
 
   spanToSegs(span) {
-    var copy, genericSegs, i, j, k, len, len1, ref, resourceCnt, resourceIndex, resourceObj, resourceSegs, seg;
+    var copy, genericSegs, i, j, k, len, len1, ref, rsCount, resourceIndex, resourceObj, resourceSegs, seg;
 
 
     genericSegs = this.sliceRangeByTimes(span);
 
-    resourceCnt = this.getResourcesCount();
+    rsCount = this.getResourcesCount();
 
-    if (!resourceCnt) {
+    if (!rsCount) {
       for (i = 0, len = genericSegs.length; i < len; i++) {
         seg = genericSegs[i];
         seg.col = seg.dayIndex;
@@ -67,12 +67,12 @@ export default class ResourceTimeGrid extends TimeGrid {
       resourceSegs = [];
       for (j = 0, len1 = genericSegs.length; j < len1; j++) {
         seg = genericSegs[j];
-        for (resourceIndex = k = 0, ref = resourceCnt; k < ref; resourceIndex = k += 1) {
+        for (resourceIndex = k = 0, ref = rsCount; k < ref; resourceIndex = k += 1) {
           let resources = this.getResources();
           resourceObj = resources[resourceIndex];
           if (!span.resourceId || span.resourceId === resourceObj.id) {
             copy = $.extend({}, seg);
-            copy.col = this.indicesToCol(resourceIndex, seg.dayIndex);
+            copy.col = this.getColByRsAndDayIndex(resourceIndex, seg.dayIndex);
             resourceSegs.push(copy);
           }
         }
@@ -103,7 +103,7 @@ export default class ResourceTimeGrid extends TimeGrid {
     var span;
     span = super.getHitSpan(hit);
     if (this.getResourcesCount()) {
-      span.resourceId = this.getColResource(hit.col).id;
+      span.resourceId = this.getResourceByCol(hit.col).id;
     }
     return span;
   }

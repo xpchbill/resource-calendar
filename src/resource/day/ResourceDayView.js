@@ -12,6 +12,7 @@ export default class ResourceDayView extends ResourceView{
    */
   constructor(...args){
     super(...args);
+    //
   }
 
   /**

@@ -3,11 +3,23 @@
 import {AgendaView} from "../FC.js";
 
 export default class ResourceView extends AgendaView{
+
+  /**
+   * Gain rsManager instance from Calendar.
+   * @constructor
+   * @param  {*} ...args [calendar, type, options, intervalDuration]
+   */
   constructor(...args) {
     super(...args);
     this.rsManager = this.calendar.rsManager;
   }
 
+  /**
+   * Fetch resources before rendering view.
+   * @override
+   * @param  {Moment} date
+   * @return {Object}  Return Jquery Deferred Object for fullcalendar.js
+   */
   displayView(date) {
     let dfd = $.Deferred();
     super.displayView(date);
@@ -24,13 +36,18 @@ export default class ResourceView extends AgendaView{
 
     if (fetchingStatus.done) {
       this.renderResources();
-      super.displayView(date);
+      //super.displayView(date);
       dfd.resolve();
     }
 
     return dfd;
   }
 
+  /**
+   * Call super.displayEvents after fetching resources.
+   * @override
+   * @param  {Array} events
+   */
   displayEvents(events) {
     let fetchingStatus = this.rsManager.fetchingStatus;
     fetchingStatus.promise.then(() => {
@@ -38,8 +55,14 @@ export default class ResourceView extends AgendaView{
     });
   }
 
+  /**
+   * Add argument resource to this.trigger call.
+   * @override
+   * @param  {Moment} span
+   * @param  {Object} event
+   */
   triggerSelect(span, ev) {
-    return this.trigger(
+    this.trigger(
       'select',
       null,
       this.calendar.applyTimezone(span.start),
