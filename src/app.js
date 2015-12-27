@@ -3,10 +3,8 @@
 import "./app.less";
 
 export class App{
-	
-	constructor() {
 
-	  $(document).ready(function() {
+	constructor() {
 
 	    $('#calendar').fullCalendar({
 	      header: {
@@ -136,7 +134,6 @@ export class App{
 	      }
 	    });
 
-	  });
 	}
 }
 new App();

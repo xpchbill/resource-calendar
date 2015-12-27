@@ -55,7 +55,6 @@ export default class ResourceManager extends Emitter{
   }
 
   removeResource(resource) {
-
     this.trigger('remove', _rsc);
   }
 

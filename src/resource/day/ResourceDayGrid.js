@@ -19,7 +19,7 @@ export default class ResourceDayGrid extends DayGrid {
 
     return '' +
       '<td class="fc-axis ' + view.widgetContentClass + '" ' + view.axisStyleAttr() + '>' +
-      '<span>' + // needed for matchCellWidths
+      '<span>' + 
       (view.opt('allDayHtml') || htmlEscape(view.opt('allDayText'))) +
       '</span>' +
       '</td>';

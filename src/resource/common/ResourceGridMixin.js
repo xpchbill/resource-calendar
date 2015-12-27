@@ -1,7 +1,7 @@
 "use strict";
 
 import {Grid, DayTableMixin, htmlEscape} from "../FC.js";
-import ResTrHTML from "./ResTrHTML.hbs";
+import HeaderParser from "./temps/HeaderParser.js";
 
 /* Extract common methods between ResourceDayGrid and ResourceTimeGrid */
 export default {
@@ -144,95 +144,13 @@ export default {
 
   /**
    * Render the header parts.
-   * If resources count over one, call renderHeadTrHtmlByResources method.
-   * @override DayTableMixin.renderHeadTrHtml
-   * @return {String}
+   * @override
+   * @return {String} Header Html.
    */
-  renderHeadTrHtml() {
-    let rsCount = this.getResourcesCount();
-    return !rsCount ? DayTableMixin.renderHeadTrHtml.call(this) : this.renderHeadTrHtmlByResources();
-  },
+  renderHeadHtml: function() {
+    let parser = new HeaderParser(this);
+    console.log(parser.parse());
+    return parser.parse();
+	}
 
-  /**
-   * Render header by resources.
-   * @return {String} HTML string
-   */
-  renderHeadTrHtmlByResources() {
-
-    this.getResourcesHeadTrHtml();
-
-    let rsCount = this.getResourcesCount();
-    return this.daysPerRow > 1 ?
-      this.renderHeadResourceTrHtml(1, this.daysPerRow) + this.renderHeadDateTrHtml(rsCount) :
-      this.renderHeadResourceTrHtml();
-  },
-
-  getResourcesHeadTrHtml() {
-    console.log(ResTrHTML({
-      title: 324242,
-      body: "sssssssssssssss"
-    }));
-  },
-
-  getDatesHeadTrHtml() {
-
-  },
-
-  renderHeadDateTrHtml(repeat, colspan) {
-    return '<tr>' + (this.isRTL ? '' : this.renderHeadIntroHtml()) + this.renderHeadDateCellsHtml(repeat, colspan) + (this.isRTL ? this.renderHeadIntroHtml() : '') + '</tr>';
-  },
-
-  renderHeadDateCellsHtml(repeat, colspan) {
-    var date, dayIndex, htmls, i, j, k, ref, ref1;
-    if (repeat == null) {
-      repeat = 1;
-    }
-    if (colspan == null) {
-      colspan = 1;
-    }
-    htmls = [];
-    for (i = j = 0, ref = repeat; j < ref; i = j += 1) {
-      for (dayIndex = k = 0, ref1 = this.daysPerRow; k < ref1; dayIndex = k += 1) {
-        date = this.dayDates[dayIndex].clone();
-        htmls.push(this.renderHeadDateCellHtml(date, colspan));
-      }
-    }
-    if (this.isRTL) {
-      htmls.reverse();
-    }
-    return htmls.join('');
-  },
-
-  renderHeadResourceTrHtml(repeat, colspan) {
-    return '<tr>' + (this.isRTL ? '' : this.renderHeadIntroHtml()) + this.renderHeadResourceCellsHtml(repeat, colspan) + (this.isRTL ? this.renderHeadIntroHtml() : '') + '</tr>';
-  },
-
-  renderHeadResourceCellsHtml(repeat, colspan) {
-    var htmls, i, j, k, len, ref, ref1, resource;
-    if (repeat == null) {
-      repeat = 1;
-    }
-    if (colspan == null) {
-      colspan = 1;
-    }
-    htmls = [];
-    for (i = j = 0, ref = repeat; j < ref; i = j += 1) {
-      ref1 = this.getResources();
-      for (k = 0, len = ref1.length; k < len; k++) {
-        resource = ref1[k];
-        htmls.push(this.renderHeadResourceCellHtml(resource, colspan));
-      }
-    }
-    if (this.isRTL) {
-      htmls.reverse();
-    }
-    return htmls.join('');
-  },
-
-  renderHeadResourceCellHtml(resource, colspan) {
-    if (colspan == null) {
-      colspan = 1;
-    }
-    return '<th class="fc-resource-cell"' + (colspan > 1 ? ' colspan="' + colspan + '"' : '') + '>' + htmlEscape(resource.title) + '</th>';
-  }
 }

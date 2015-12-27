@@ -42,12 +42,12 @@ function build(mode, done) {
             ? ExtractTextPlugin.extract("css?-minimize&sourceMap!autoprefixer?{browsers:['last 2 versions', 'ie 9']}!less?sourceMap")
             : ExtractTextPlugin.extract("css?minimize!autoprefixer?{browsers:['last 2 versions', 'ie 9']}!less")
         },
-        { test: /\.hbs$/, loader: "handlebars-loader" }
+        { test: /\.html$/, loader: "mustache" }
       ]
     },
     resolve: {
-      extensions: ["", ".js", ".hbs"],
-      modulesDirectories: ["src"]
+      extensions: ["", ".js", ".html"],
+      modulesDirectories: ["src", "node_modules"]
     },
     externals: {
         // require("jquery") is external and available

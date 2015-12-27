@@ -3,7 +3,7 @@
 import ResourceDayView from "./ResourceDayView.js"
 
 /**
- * 
+ *
  */
 export default {
 	type: 'agenda',
