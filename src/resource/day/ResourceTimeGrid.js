@@ -1,107 +1,89 @@
 "use strict";
 
 import {TimeGrid} from "../FC.js";
+import Intro from "./temps/Intro.html";
 import ResourceGridMixin from "../common/ResourceGridMixin.js";
 
 export default class ResourceTimeGrid extends TimeGrid {
 
-  renderHeadIntroHtml() {
-    var view = this.view;
-    var weekText;
-
-    if (view.opt('weekNumbers')) {
-      weekText = this.start.format(view.opt('smallWeekFormat'));
-
-      return '' +
-        '<th class="fc-axis fc-week-number ' + view.widgetHeaderClass + '" ' + view.axisStyleAttr() + '>' +
-        '<span>' +
-        htmlEscape(weekText) +
-        '</span>' +
-        '</th>';
-    } else {
-      return '<th class="fc-axis ' + view.widgetHeaderClass + '" ' + view.axisStyleAttr() + '></th>';
-    }
-  }
-
+  /**
+   * @override
+   * @return {String} HTML
+   */
   renderBgIntroHtml() {
-    return '<td class="fc-axis ' + this.view.widgetContentClass + '" ' + this.view.axisStyleAttr() + '></td>';
+    return Intro({
+      widgetContentClass: this.view.widgetContentClass
+    },{
+      axisStyle: this.view.axisStyleAttr()
+    });
   }
 
+  /**
+   * @override
+   * @return {String} HTML
+   */
   renderIntroHtml() {
-    return '<td class="fc-axis" ' + this.view.axisStyleAttr() + '></td>';
+    return Intro({}, {
+      axisStyle: this.view.axisStyleAttr()
+    });
   }
 
+  /**
+   * @override
+   * @return {Array} Segs
+   */
   renderFgEvents(events) {
     var calendar, event;
     calendar = this.view.calendar;
 
-    return super.renderFgEvents((function() {
-      var i, len, results;
-      results = [];
-      for (i = 0, len = events.length; i < len; i++) {
-        event = events[i];
-        if (event['resourceId']) {
-          results.push(event);
-        }
+    let rsEvents = [];
+    events.forEach((evt) => {
+      if (evt['resourceId']) {
+        rsEvents.push(evt);
       }
-      return results;
-    })());
+    });
 
+    return super.renderFgEvents(rsEvents);
   }
 
+  /**
+   * @override
+   * @param  {Object} Span
+   * @return {Array} Segs
+   */
   spanToSegs(span) {
-    var copy, genericSegs, i, j, k, len, len1, ref, rsCount, resourceIndex, resourceObj, resourceSegs, seg;
-
-
-    genericSegs = this.sliceRangeByTimes(span);
-
-    rsCount = this.getResourcesCount();
+    let rsCount = this.getResourcesCount();
+    let segs = this.sliceRangeByTimes(span);
 
     if (!rsCount) {
-      for (i = 0, len = genericSegs.length; i < len; i++) {
-        seg = genericSegs[i];
-        seg.col = seg.dayIndex;
-      }
-      return genericSegs;
+      segs.forEach((sg) => {
+        sg.col = sg.dayIndex;
+      });
+      return segs;
     } else {
-      resourceSegs = [];
-      for (j = 0, len1 = genericSegs.length; j < len1; j++) {
-        seg = genericSegs[j];
-        for (resourceIndex = k = 0, ref = rsCount; k < ref; resourceIndex = k += 1) {
-          let resources = this.getResources();
-          resourceObj = resources[resourceIndex];
-          if (!span.resourceId || span.resourceId === resourceObj.id) {
-            copy = $.extend({}, seg);
-            copy.col = this.getColByRsAndDayIndex(resourceIndex, seg.dayIndex);
-            resourceSegs.push(copy);
+      let rsSegs = [];
+      segs.forEach((sg) => {
+        let resources = this.getResources();
+        resources.forEach((rs, i) => {
+          if(!span.resourceId || span.resourceId === rs.id){
+            let newSeg = Object.assign({}, sg);
+            newSeg.col = this.getColByRsAndDayIndex(i, sg.dayIndex);
+            rsSegs.push(newSeg);
           }
-        }
-      }
-      return resourceSegs;
+        });
+      });
+      return rsSegs;
     }
   }
 
-  renderHeadIntroHtml() {
-    var view = this.view;
-    var weekText;
-
-    if (view.opt('weekNumbers')) {
-      weekText = this.start.format(view.opt('smallWeekFormat'));
-
-      return '' +
-        '<th class="fc-axis fc-week-number ' + view.widgetHeaderClass + '" ' + view.axisStyleAttr() + '>' +
-        '<span>' +
-        htmlEscape(weekText) +
-        '</span>' +
-        '</th>';
-    } else {
-      return '<th class="fc-axis ' + view.widgetHeaderClass + '" ' + view.axisStyleAttr() + '><a href="#">删除</a></th>';
-    }
-  }
-
+  /**
+   * Add resourse id to Span.
+   * @override
+   * @param  {Object} hit
+   * @return {Object} Span
+   */
   getHitSpan(hit) {
-    var span;
-    span = super.getHitSpan(hit);
+    let span = super.getHitSpan(hit);
     if (this.getResourcesCount()) {
       span.resourceId = this.getResourceByCol(hit.col).id;
     }

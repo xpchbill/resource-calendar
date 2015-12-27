@@ -119,10 +119,16 @@ export class App{
 	        title: 'event 4'
 	      }, {
 	        id: '5',
+	        resourceId: 'c',
+	        start: '2015-12-14T08:00:00',
+	        end: '2015-12-14T09:30:00',
+	        title: 'event 5'
+	      }, {
+	        id: '6',
 	        resourceId: 'd',
 	        start: '2015-12-15T10:00:00',
 	        end: '2015-12-15T15:00:00',
-	        title: 'event 5'
+	        title: 'event 6'
 	      }],
 	      select: function(start, end, jsEvent, view, resource) {
 	        console.log(

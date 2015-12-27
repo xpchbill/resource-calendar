@@ -5,37 +5,14 @@ import ResourceGridMixin from "../common/ResourceGridMixin.js";
 
 export default class ResourceDayGrid extends DayGrid {
 
-  constructor(view) {
-    super(view);
-  }
-
   /**
-   * Render time scale HTML.
+   * Add resourse id to Span.
    * @override
-   * @return {String}
+   * @param  {Object} hit
+   * @return {Object} Span
    */
-  renderBgIntroHtml() {
-    var view = this.view;
-
-    return '' +
-      '<td class="fc-axis ' + view.widgetContentClass + '" ' + view.axisStyleAttr() + '>' +
-      '<span>' + 
-      (view.opt('allDayHtml') || htmlEscape(view.opt('allDayText'))) +
-      '</span>' +
-      '</td>';
-  }
-
-  /**
-   * Render
-   * @return {String}
-   */
-  renderIntroHtml() {
-    return '<td class="fc-axis" ' + this.view.axisStyleAttr() + '></td>';
-  }
-
   getHitSpan(hit) {
-    var span;
-    span = super.getHitSpan(hit);
+    let span = super.getHitSpan(hit);
     if (this.getResourcesCount()) {
       span.resourceId = this.getResourceByCol(hit.col).id;
     }

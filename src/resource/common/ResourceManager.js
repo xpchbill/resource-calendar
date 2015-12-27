@@ -16,7 +16,7 @@ export default class ResourceManager extends Emitter{
     setTimeout(() => {
       this.setResources(this.calendar.options['resources'] || []);
       fetchingStatus.end(this.getResources());
-    }, 1000);
+    }, 500);
 
   }
 
