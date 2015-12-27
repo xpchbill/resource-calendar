@@ -151,6 +151,6 @@ export default {
     let parser = new HeaderParser(this);
     console.log(parser.parse());
     return parser.parse();
-	}
-
+  }
+  
 }
