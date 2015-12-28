@@ -1,23 +1,25 @@
 {
-  "name": "resource-calendar",
-  "title": "resource-calendar",
+  "name": "fullcalendar-resource",
+  "title": "fullcalendar-resource",
   "version": "0.0.1",
-  "description": "Full-sized drag & drop event calendar",
+  "description": "A resource-views plugin of Fullcalendar.",
   "keywords": [
-    "calendar"
+    "calendar",
+    "fullcalendar",
+    "fullcalendar-resource"
   ],
-  "homepage": "https://github.com/xpchbill/resource-calendar",
+  "homepage": "https://github.com/xpchbill/fullcalendar-resource",
   "bugs": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/xpchbill/resource-calendar.git"
+    "url": "https://github.com/xpchbill/fullcalendar-resource.git"
   },
   "license": {
     "type": "MIT",
     "url": ""
   },
   "author": {
-    "name": "A"
+    "name": "Bill Xiong"
   },
   "copyright": "",
   "dependencies": {
@@ -47,16 +49,12 @@
     "webpack": "^1.12.6"
   },
   "scripts": {
-    "dev": "concurrent --kill-others \"gulp dev\""
+    "dev": "concurrent --kill-others \"gulp\""
   },
-  "main": "dist/fullcalendar.js",
+  "main": "dist/js/fullcalendar.resource.js",
   "files": [
     "dist/*.js",
     "dist/*.css",
-    "dist/lang",
-    "README.*",
-    "LICENSE.*",
-    "CHANGELOG.*",
-    "CONTRIBUTING.*"
+    "README.*"
   ]
 }
