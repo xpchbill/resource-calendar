@@ -112,7 +112,7 @@ gulp.task("prodBuild", function(done) {
 });
 
 gulp.task("copylibs", function() {
-  return gulp.src(["./lib/moment/**/*.*", "./lib/jquery/**/*.*", "./lib/fullcalendar/**/*.*"], {base: "./lib"})
+  return gulp.src(["./lib/moment/moment.js", "./lib/jquery/dist/jquery.js", "./lib/fullcalendar/**/*.*"], {base: "./lib"})
     .pipe(gulp.dest("./dist/lib"));
 });
 
