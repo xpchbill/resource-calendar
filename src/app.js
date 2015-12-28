@@ -12,6 +12,12 @@ export class App{
 	        center: 'title',
 	        right: 'resourceDay,resourceWeek,agendaWeek,month,agendaDay'
 	      },
+				// views: {
+				// 	resourceWeek2: {
+				// 		type: 'agenda',
+				// 		duration: { weeks: 2 }
+				// 	}
+				// },
 	      contentHeight: 'auto',
 	      minTime: "06:00:00",
 	      maxTime: "20:00:00",

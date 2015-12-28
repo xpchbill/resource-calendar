@@ -14,6 +14,8 @@ export default class ResourceWeekView extends ResourceView{
     super(...args);
   }
 
+  displayView(date) {}
+
   /**
    * @override
    * @return {Class} Instance of ResourceTimeGrid.
